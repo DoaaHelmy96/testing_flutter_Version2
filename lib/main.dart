@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:flutter/material.dart';
 
 class Product {
   final String name;
@@ -26,4 +27,41 @@ Future<Product?> fetchProduct(String productId, Client client) async {
   return null;
 }
 
-void main() {}
+void main() {
+  runApp(CounterWidget());
+}
+
+class CounterWidget extends StatefulWidget {
+  @override
+  _CounterWidgetState createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+  int _count = 0;
+  void _incrementCounter() {
+    setState(() {
+      _count++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('$_count'),
+              ElevatedButton(
+                onPressed: _incrementCounter,
+                child: Text('Increment'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
